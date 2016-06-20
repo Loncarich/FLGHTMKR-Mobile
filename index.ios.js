@@ -36,14 +36,18 @@ class flghtmkr extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text >
-          FLGHTMKR
-        </Text>
-        <View>
-          <Request fetchData= {this.bindFetchData()} />
+        <View style= {styles.header}>
+          <Text >
+            FLGHTMKR
+          </Text>
         </View>
-        <View >
-          <Results totalTime= {this.state.totalTime} tsaTime= {this.state.tsaTime} driveTime= {this.state.driveTime} />
+        <View style= {styles.body}>
+          <View>
+            <Request fetchData= {this.bindFetchData()} />
+          </View>
+          <View >
+            <Results totalTime= {this.state.totalTime} tsaTime= {this.state.tsaTime} driveTime= {this.state.driveTime} />
+          </View>
         </View>
       </View>
     );
@@ -56,6 +60,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
+  },
+  header: {
+    flex: 2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+  },
+  body: {
+    flex: 7,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
+
   }
 });
 

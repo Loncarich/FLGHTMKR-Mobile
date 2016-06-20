@@ -34,9 +34,6 @@ class Request extends Component {
   render(){
     return (
       <View>
-        <TouchableHighlight onPress= {this.handlePress}>
-          <Text>Get Total Travel Time!</Text>
-        </TouchableHighlight>
         <TextInput value= {this.state.address}
                    placeholder=  'Address'
                    onChangeText= {(value) => this.onAddressChange(value)}
@@ -45,6 +42,11 @@ class Request extends Component {
                    placeholder= 'Terminal Number (Integer or TBIT for Tom Bradley)'
                    onChangeText= {(value) => this.onTerminalChange(value)}
                    style= {styles.textInput}/>
+        <TouchableHighlight style= {styles.button}
+                            underlayColor="gray"
+                            onPress= {this.handlePress}>
+          <Text>Get Total Travel Time!</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -55,6 +57,11 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1
+  },
+  button: {
+    borderWidth: 2,
+    justifyContent: 'space-around',
+    alignItems: 'center'
   }
 })
 
