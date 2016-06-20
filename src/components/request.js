@@ -6,7 +6,7 @@ import {
   Text,
   StyleSheet
 } from 'react-native';
-import { TSA } from './src/api';
+
 
 
 class Request extends Component {
@@ -19,17 +19,17 @@ class Request extends Component {
     };
     this.handlePress= this.handlePress.bind(this)
   }
-  onAddressChange(e) {
-      this.setState({address: e.target.value});
-        console.log(e.target.value);
+  onAddressChange(value) {
+      this.setState({address: value});
+        console.log(value);
     }
 
-  onTerminalChange(e) {
-    this.setState({terminal: e.target.value});
-    console.log(event.target.value);
+  onTerminalChange(value) {
+    this.setState({terminal: value});
+    console.log(value);
   }
   handlePress(){
-    props.fetchData(this.state.terminal, this.state.address, TSA);
+    this.props.fetchData(this.state.terminal, this.state.address);
   }
   render(){
     return (
@@ -39,11 +39,11 @@ class Request extends Component {
         </TouchableHighlight>
         <TextInput value= {this.state.address}
                    placeholder=  'Address'
-                   onChange= {(e) => this.onAddressChange(e)}
+                   onChangeText= {(value) => this.onAddressChange(value)}
                    style= {styles.textInput}/>
         <TextInput value= {this.state.terminal}
                    placeholder= 'Terminal Number (Integer or TBIT for Tom Bradley)'
-                   onChange= {(e) => this.onTerminalChange(e)}
+                   onChangeText= {(value) => this.onTerminalChange(value)}
                    style= {styles.textInput}/>
       </View>
     );

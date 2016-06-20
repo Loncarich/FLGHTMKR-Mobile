@@ -11,9 +11,9 @@ import {
   Text,
   View
 } from 'react-native';
-import Results from './src/components/results';
-import Request from './src/components/request';
-import fetchData  from './src/api';
+import Results from './src/components/results.js';
+import Request from './src/components/request.js';
+import fetchData  from './src/api.js';
 
 class flghtmkr extends Component {
     constructor(props){
@@ -25,7 +25,14 @@ class flghtmkr extends Component {
         lat: 33.9485094,
         lng: -118.3995575
       }
+    this.bindFetchData= this.bindFetchData.bind(this);
     }
+
+  bindFetchData(){
+    var that= this;
+    return fetchData(that);
+  }
+
   render() {
     return (
       <View style={styles.container}>
@@ -33,7 +40,7 @@ class flghtmkr extends Component {
           FLGHTMKR
         </Text>
         <View>
-          <Request fetchData= {fetchData} />
+          <Request fetchData= {this.bindFetchData()} />
         </View>
         <View >
           <Results totalTime= {this.state.totalTime} tsaTime= {this.state.tsaTime} driveTime= {this.state.driveTime} />

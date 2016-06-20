@@ -5,7 +5,7 @@ import {
   StyleSheet
 } from 'react-native';
 
-const Results= (props) =>
+const Results= (props) => (
   <View>
     <Text>
     Total Time: {props.totalTime}
@@ -17,7 +17,6 @@ const Results= (props) =>
     Drive Time: {props.driveTime}
     </Text>
   </View>
-
-;
+);
 
 export default Results;
