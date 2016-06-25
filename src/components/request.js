@@ -21,29 +21,28 @@ class Request extends Component {
   }
   onAddressChange(value) {
       this.setState({address: value});
-        console.log(value);
     }
 
   onTerminalChange(value) {
     this.setState({terminal: value});
-    console.log(value);
   }
   handlePress(){
     this.props.fetchData(this.state.terminal, this.state.address);
+    this.setState({terminal: '', address: ''});
   }
   render(){
     return (
-      <View>
+      <View style= {styles.requestView}>
         <TextInput value= {this.state.address}
                    placeholder=  'Address'
                    onChangeText= {(value) => this.onAddressChange(value)}
                    style= {styles.textInput}/>
         <TextInput value= {this.state.terminal}
-                   placeholder= 'Terminal Number (Integer or TBIT for Tom Bradley)'
+                   placeholder= 'Terminal # (Integer or TB)'
                    onChangeText= {(value) => this.onTerminalChange(value)}
                    style= {styles.textInput}/>
         <TouchableHighlight style= {styles.button}
-                            underlayColor="gray"
+                            underlayColor='#ff1493'
                             onPress= {this.handlePress}>
           <Text>Get Total Travel Time!</Text>
         </TouchableHighlight>
@@ -53,15 +52,25 @@ class Request extends Component {
 };
 
 const styles = StyleSheet.create({
+  requestView: {
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
   textInput: {
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1
+    borderWidth: 1,
+    width: 250,
+    margin: 5,
+    textAlign: 'center'
   },
   button: {
     borderWidth: 2,
-    justifyContent: 'space-around',
-    alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center',
+    margin: 5,
+    width: 150,
+    height: 40
   }
 })
 

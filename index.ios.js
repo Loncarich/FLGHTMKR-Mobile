@@ -29,6 +29,7 @@ class flghtmkr extends Component {
     }
 
   bindFetchData(){
+    console.log('calling bindFetchData')
     var that= this;
     return fetchData(that);
   }
@@ -37,16 +38,19 @@ class flghtmkr extends Component {
     return (
       <View style={styles.container}>
         <View style= {styles.header}>
-          <Text >
+          <Text style= {styles.headerText}>
             FLGHTMKR
           </Text>
         </View>
         <View style= {styles.body}>
-          <View>
+          <View style= {styles.requestBody}>
             <Request fetchData= {this.bindFetchData()} />
           </View>
-          <View >
-            <Results totalTime= {this.state.totalTime} tsaTime= {this.state.tsaTime} driveTime= {this.state.driveTime} />
+          <View style= {styles.resultsBody}>
+            {this.state.totalTime.length > 0 ?
+              <Results totalTime= {this.state.totalTime} tsaTime= {this.state.tsaTime} driveTime= {this.state.driveTime} /> :
+              <Text></Text>
+            }
           </View>
         </View>
       </View>
@@ -67,12 +71,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
   },
+  headerText: {
+    fontSize: 50,
+    fontWeight: 'bold',
+    textShadowColor: 'blue'
+  },
   body: {
-    flex: 7,
-    justifyContent: 'center',
+    flex: 3,
     alignItems: 'center',
     backgroundColor: '#F5FCFF',
 
+  },
+  requestBody: {
+    flex: 4
+  },
+  resultsBody: {
+    flex: 5
   }
 });
 

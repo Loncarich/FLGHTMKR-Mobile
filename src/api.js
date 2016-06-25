@@ -1,10 +1,10 @@
 export default function fetchData(param){
   return function (terminal, address){
-    Promise.all([fetch('http://localhost:3000/tsa', {
+    Promise.all([fetch('http://192.168.1.111:8000/tsa', {
         method: 'GET',
       }).then(response => {
         return response.json();
-      }), fetch('http://localhost:3000/google', {
+      }).catch(err => console.log(err)), fetch('http://192.168.1.111:8000/google', {
       method: 'POST',
       headers: {
         'Accept': 'text',
@@ -13,7 +13,7 @@ export default function fetchData(param){
       body: address
     }).then(response => {
       return response.json();
-    })]).then(function(value){
+    }).catch(err => console.log(err))]).then(function(value){
       sortData(value, terminal, param);
     });
   };
@@ -22,7 +22,7 @@ export default function fetchData(param){
 
 function sortData(data, terminal, param){
   const TSA = {
-    '1': 'TBIT',
+    '1': 'TB',
     '2': '4',
     '4': '7',
     '5': '3',
