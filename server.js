@@ -5,7 +5,7 @@ var request = require('request');
 var port= 8000;
 //var ip= "127.0.0.1";
 
-app.listen(port, '192.168.1.111', function(){console.log('listening on port: ', port)});
+app.listen(port, function(){console.log('listening on port: ', port)});
 
 app.get('/tsa', function(req, res) {
 request('http://apps.tsa.dhs.gov/MyTSAWebService/GetWaitTimes.ashx?ap=LAX&output=json', function (error, response, body) {

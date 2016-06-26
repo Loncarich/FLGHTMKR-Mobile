@@ -17,7 +17,8 @@ class Request extends Component {
       terminal: '',
       searchString: ''
     };
-    this.handlePress= this.handlePress.bind(this)
+    this.handlePress= this.handlePress.bind(this);
+    this.handleGeoPress= this.handleGeoPress.bind(this);
   }
   onAddressChange(value) {
       this.setState({address: value});
@@ -30,15 +31,31 @@ class Request extends Component {
     this.props.fetchData(this.state.terminal, this.state.address);
     this.setState({terminal: '', address: ''});
   }
+  handleGeoPress(){
+    navigator.geolocation.getCurrentPosition(
+              (position) => {
+                console.log(position);
+                this.setState({address: position.coords.latitude+', '+position.coords.longitude})
+              },
+              (error) => alert(error.message),
+              {enableHighAccuracy: true, timeout: 20000, maximumAge: 1000}
+            )
+  }
   render(){
     return (
       <View style= {styles.requestView}>
         <TextInput value= {this.state.address}
-                   placeholder=  'Address'
+                   placeholder=  'Enter Address'
                    onChangeText= {(value) => this.onAddressChange(value)}
                    style= {styles.textInput}/>
+        <Text>or</Text>
+        <TouchableHighlight onPress= {this.handleGeoPress}
+                            style= {styles.geoButton}
+                            underlayColor='#ff1493'>
+          <Text>Use Current Location</Text>
+        </TouchableHighlight>
         <TextInput value= {this.state.terminal}
-                   placeholder= 'Terminal # (Integer or TB)'
+                   placeholder= 'Enter Terminal # (Integer or TB)'
                    onChangeText= {(value) => this.onTerminalChange(value)}
                    style= {styles.textInput}/>
         <TouchableHighlight style= {styles.button}
@@ -64,11 +81,16 @@ const styles = StyleSheet.create({
     margin: 5,
     textAlign: 'center'
   },
+  geoButton: {
+    borderWidth: 2,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
   button: {
     borderWidth: 2,
     justifyContent: 'center',
     alignItems: 'center',
-    margin: 5,
+    margin: 35,
     width: 150,
     height: 40
   }

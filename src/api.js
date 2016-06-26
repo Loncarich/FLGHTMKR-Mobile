@@ -1,10 +1,10 @@
 export default function fetchData(param){
   return function (terminal, address){
-    Promise.all([fetch('http://192.168.1.111:8000/tsa', {
+    Promise.all([fetch('http://localhost:8000/tsa', {
         method: 'GET',
       }).then(response => {
         return response.json();
-      }).catch(err => console.log(err)), fetch('http://192.168.1.111:8000/google', {
+      }).catch(err => console.log(err)), fetch('http://localhost:8000/google', {
       method: 'POST',
       headers: {
         'Accept': 'text',
